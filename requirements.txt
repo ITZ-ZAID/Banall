@@ -1,0 +1,5 @@
+async-lru==1.0.2
+pyaes==1.6.1
+Pyrogram==1.1.12
+PySocks==1.7.1
+python-dotenv==0.15.0
