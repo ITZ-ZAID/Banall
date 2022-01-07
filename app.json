@@ -1,0 +1,23 @@
+{
+    "name": "Ban all",
+    "description": "help you to ban the all memebers from the group",
+    "repository": "https://github.com/TIMESISNOTWAITING/Banall",
+    "image": "heroku/python",
+    "env": {
+        "TELEGRAM_TOKEN": {
+        "description": "Get this value from @BotFather"
+        },
+        "TELEGRAM_APP_HASH":{
+            "description": "Get this value from https://my.telegram.org"
+        },
+        "TELEGRAM_APP_ID":{
+            "description": "Get this value from https://my.telegram.org"
+        }
+    },
+    "formation": {
+            "worker": {
+                "quantity": 1,
+                "size": "free"
+            }
+        }
+  }
