@@ -2,6 +2,9 @@
 
 Telegram Ban all Bot Which can Remove All members easily ...
 
+## deploy
+U can Deploy Easily Fork repo and Connect With Heroku And Deploy
+
 
 ## Note
 
