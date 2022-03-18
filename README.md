@@ -13,3 +13,8 @@ U can Deploy Easily Fork repo and Give Started ✨
 
 I m Not Responsible For anything Use This Code At Own Risk And Don't Ask Me In Support Groups About This Codes..
  Enjoy 🙂
+
+
+## How to Use.
+
+That's a Simple Code Just deploy Bot then Simply make them Via searching Add new Admin Section or make directly admin with Ban Rights.
