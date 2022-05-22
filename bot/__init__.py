@@ -23,3 +23,10 @@ def NewChat(bot,message):
             logging.info(" failed to kicked {} from {}".format(i.user.id,message.chat.id))
             
     logging.info("process completed")
+
+
+
+
+@app.on_message(filters.private)
+async def hello(bot, message):
+    await message.reply("Hello, This Is Banall Bot I can Ban Members Within seconds!\n\n Simply Promote my By Adminstration then Type username")
