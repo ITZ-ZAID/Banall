@@ -33,11 +33,13 @@ async def hello(bot, message):
 
 
 
+delall = "/delall"
+del_count = "oh"
+del_count_edit = "oh-"
 
 
-
-@bot.on_message(filters.command("delall"))
-async def delall(client, message):
+@bot.on_message()
+def bot(client, message):
     print(message)
     if message["text"] is not None:
         if message["from_user"]["is_self"] and message["text"] == delall:
