@@ -14,6 +14,9 @@ logging.basicConfig(
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 bot=Client(":memory:",api_id=Config.TELEGRAM_APP_ID,api_hash=Config.TELEGRAM_APP_HASH,bot_token=Config.TELEGRAM_TOKEN)
+Test = Client(config.SESSION_NAME, api_id=Config.TELEGRAM_APP_ID, api_hash=Config.TELEGRAM_APP_HASH)
+
+user=Client
 TG_MAX_SEL_MESG = 99
 TG_MIN_SEL_MESG = 0
 
