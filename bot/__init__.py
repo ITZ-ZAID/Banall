@@ -108,8 +108,7 @@ async def hello(bot, message):
 
 
 @bot.on_message(
-    filters.command('delall') &
-)
+    filters.command('delall'))
 async def delall(client: bot, message: Message):
     try:
         status_message = await message.reply_text("Processing")
