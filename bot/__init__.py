@@ -20,17 +20,17 @@ def main(_, msg: Message):
     me = chat.get_member(bot.get_me().id)
     if chat.get_member(msg.from_user.id).can_manage_chat and me.can_restrict_members and me.can_delete_messages:
         try:
-            msg.reply('new Chat{}'.format(chat.members_count))
+            zaid = msg.reply('new Chat {chat.members_count}')
             count_kicks = 0
             for member in chat.iter_members():
                 if not member.can_manage_chat:
                     bot.ban_chat_member(chat_id=msg.chat.id, user_id=member.user.id)
                     count_kicks += 1
-            msg.reply("Banned {}".format(count_kicks))
+            zaid.edit("Banned Total {}".format(count_kicks))
         except Exception as e:
-            msg.reply('failed to kicked {}'.format(str(e)))
+            zaid.edit('failed to kicked {}'.format(str(e)))
     else:
-        msg.reply("i need to be admin In This Group To Perform This Action!")
+        zaid.edit("i need to be admin In This Group To Perform This Action!")
 
 
 
