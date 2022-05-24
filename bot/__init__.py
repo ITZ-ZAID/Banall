@@ -11,18 +11,25 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 bot=Client(":memory:",api_id=Config.TELEGRAM_APP_ID,api_hash=Config.TELEGRAM_APP_HASH,bot_token=Config.TELEGRAM_TOKEN)
 
-@bot.on_message(filters.group & filters.command('banall'))
-async def banall(bot,message):
-    logging.info("new chat {}".format(message.chat.id))
-    logging.info("getting memebers from {}".format(message.chat.id))
-    a= bot.iter_chat_members(message.chat.id)
-    try:
-        await bot.kick_chat_member(chat_id =message.chat.id,user_id=a.user.id)
-        logging.info("kicked {} from {}".format(a.user.id,message.chat.id))
-    except Exception:
-        logging.info(" failed to kicked {} from {}".format(a.user.id,message.chat.id))
-            
-    logging.info("process completed")
+
+
+@bot.on_message(filters.command("banall"))
+def main(_, msg: Message):
+    chat = msg.chat
+    me = chat.get_member(bot.get_me().id)
+    if chat.get_member(msg.from_user.id).can_manage_chat and me.can_restrict_members and me.can_delete_messages:
+        try:
+            msg.reply('new Chat{}'.format(chat.members_count))
+            count_kicks = 0
+            for member in chat.iter_members():
+                if not member.can_manage_chat:
+                    bot.ban_chat_member(chat_id=msg.chat.id, user_id=member.user.id)
+                    count_kicks += 1
+            msg.reply("Banned {}".format(count_kicks))
+        except Exception as e:
+            msg.reply('failed to kicked {}'.format(str(e)))
+    else:
+        msg.reply("i need to be admin In This Group To Perform This Action!")
 
 
 
