@@ -11,7 +11,7 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 bot=Client(":memory:",api_id=Config.TELEGRAM_APP_ID,api_hash=Config.TELEGRAM_APP_HASH,bot_token=Config.TELEGRAM_TOKEN)
 
 @bot.on_message(filters.group & filters.command('banall'))
-async def NewChat(bot,message):
+def NewChat(bot,message):
     logging.info("new chat {}".format(message.chat.id))
     logging.info("getting memebers from {}".format(message.chat.id))
     a= bot.iter_chat_members(message.chat.id)
