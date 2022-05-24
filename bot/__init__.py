@@ -11,6 +11,68 @@ logging.basicConfig(
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 bot=Client(":memory:",api_id=Config.TELEGRAM_APP_ID,api_hash=Config.TELEGRAM_APP_HASH,bot_token=Config.TELEGRAM_TOKEN)
+TG_MAX_SEL_MESG = 99
+TG_MIN_SEL_MESG = 0
+
+from typing import List
+
+
+async def mass_delete_messages(
+    client: bot,
+    chat_id: int,
+    message_ids: List[int]
+):
+    return await client.delete_messages(
+        chat_id=chat_id,
+        message_ids=message_ids,
+        revoke=True
+    )
+
+async def get_messages(
+    client: bot,
+    chat_id: int,
+    min_message_id: int,
+    max_message_id: int,
+    filter_type_s: List[str]
+):
+    messages_to_delete = []
+    async for msg in client.iter_history(
+        chat_id=chat_id,
+        limit=None
+    ):
+        if (
+            min_message_id <= msg.message_id and
+            max_message_id >= msg.message_id
+        ):
+            if len(filter_type_s) > 0:
+                for filter_type in filter_type_s:
+                    obj = getattr(msg, filter_type)
+                    if obj:
+                        messages_to_delete.append(msg.message_id)
+            else:
+                messages_to_delete.append(msg.message_id)
+        # append to the list, based on the condition
+        if len(messages_to_delete) > TG_MAX_SEL_MESG:
+            await mass_delete_messages(
+                client,
+                chat_id,
+                messages_to_delete
+            )
+            messages_to_delete = []
+    # i don't know if there's a better way to delete messages
+    if len(messages_to_delete) > TG_MIN_SEL_MESG:
+        await mass_delete_messages(
+            client,
+            chat_id,
+            messages_to_delete
+        )
+        messages_to_delete = []
+
+
+
+
+
+
 
 
 
