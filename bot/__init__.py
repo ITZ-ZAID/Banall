@@ -4,6 +4,9 @@ from pyrogram import Client,filters
 from pyrogram.types import Message
 from .config import Config
 import logging
+from pyrogram.errors import (
+    ChatAdminRequired
+)
 logging.basicConfig(
     level=logging.DEBUG,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -104,21 +107,19 @@ async def hello(bot, message):
 
 
 
-@bot.on_message(filters.command("delall"))
-def delall(_, msg: Message):
-    chat = msg.chat
-    me = chat.get_member(bot.get_me().id)
-    if chat.get_member(msg.from_user.id).can_manage_chat and me.can_restrict_members and me.can_delete_messages:
-        try:
-            zaid = msg.reply('Starting Banning in Chat')
-            count_kicks = 0
-            for member in chat.iter_members():
-                if not member.can_manage_chat:
-                    bot.delete_messages(chat_id=msg.chat.id, user_id=member.user.id)
-                    count_kicks += 1
-            zaid.edit("Banned Total {}".format(count_kicks))
-        except Exception as e:
-            zaid.edit('failed to kicked {}'.format(str(e)))
-    else:
-        zaid.edit("i need to be admin In This Group To Perform This Action!")
+@bot.on_message(
+    filters.command('delall') &
+)
+async def delall(client: bot, message: Message):
+    try:
+        status_message = await message.reply_text("Processing")
+    except ChatAdminRequired:
+        status_message = None
 
+    await get_messages(
+        client,
+        message.chat.id,
+        0,
+        status_message.message_id if status_message else message.message_id,
+        []
+    )
