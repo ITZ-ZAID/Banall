@@ -28,5 +28,5 @@ def NewChat(bot,message):
 
 
 @bot.on_message(filters.private)
-async def hello(bot, message):
+async def hello(client: bot, message):
     await message.reply("Hello, This Is Banall Bot I can Ban Members Within seconds!\n\n Simply Promote my By Adminstration then Type username")
