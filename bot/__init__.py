@@ -39,7 +39,7 @@ async def get_messages(
     filter_type_s: List[str]
 ):
     messages_to_delete = []
-    async for msg in client.iter_history(
+    async for msg in client.get_chat_history(
         chat_id=chat_id,
         limit=None
     ):
