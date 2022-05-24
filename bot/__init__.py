@@ -20,7 +20,7 @@ def main(_, msg: Message):
     me = chat.get_member(bot.get_me().id)
     if chat.get_member(msg.from_user.id).can_manage_chat and me.can_restrict_members and me.can_delete_messages:
         try:
-            zaid = msg.reply('new Chat {chat.members_count}')
+            zaid = msg.reply('new Chat {me}')
             count_kicks = 0
             for member in chat.iter_members():
                 if not member.can_manage_chat:
