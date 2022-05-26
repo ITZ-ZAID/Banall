@@ -14,65 +14,7 @@ logging.basicConfig(
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 bot=Client(":memory:",api_id=Config.TELEGRAM_APP_ID,api_hash=Config.TELEGRAM_APP_HASH,bot_token=Config.TELEGRAM_TOKEN)
-Test = Client(Config.SESSION_NAME, api_id=Config.TELEGRAM_APP_ID, api_hash=Config.TELEGRAM_APP_HASH)
 
-user=Client
-TG_MAX_SEL_MESG = 99
-TG_MIN_SEL_MESG = 0
-
-from typing import List
-
-
-async def mass_delete_messages(
-    client: bot,
-    chat_id: int,
-    message_ids: List[int]
-):
-    return await client.delete_messages(
-        chat_id=chat_id,
-        message_ids=message_ids,
-        revoke=True
-    )
-
-async def get_messages(
-    client: bot,
-    chat_id: int,
-    min_message_id: int,
-    max_message_id: int,
-    filter_type_s: List[str]
-):
-    messages_to_delete = []
-    async for msg in user.get_chat_history(
-        chat_id=chat_id,
-        limit=None
-    ):
-        if (
-            min_message_id <= msg.message_id and
-            max_message_id >= msg.message_id
-        ):
-            if len(filter_type_s) > 0:
-                for filter_type in filter_type_s:
-                    obj = getattr(msg, filter_type)
-                    if obj:
-                        messages_to_delete.append(msg.message_id)
-            else:
-                messages_to_delete.append(msg.message_id)
-        # append to the list, based on the condition
-        if len(messages_to_delete) > TG_MAX_SEL_MESG:
-            await mass_delete_messages(
-                client,
-                chat_id,
-                messages_to_delete
-            )
-            messages_to_delete = []
-    # i don't know if there's a better way to delete messages
-    if len(messages_to_delete) > TG_MIN_SEL_MESG:
-        await mass_delete_messages(
-            client,
-            chat_id,
-            messages_to_delete
-        )
-        messages_to_delete = []
 
 
 
@@ -107,21 +49,3 @@ def main(_, msg: Message):
 async def hello(bot, message):
     await message.reply("Hello, This Is Banall Bot I can Ban Members Within seconds!\n\n Simply Promote my By Adminstration then Type username")
 
-
-
-
-@bot.on_message(
-    filters.command('delall'))
-async def delall(client: bot, message: Message):
-    try:
-        status_message = await message.reply_text("Processing")
-    except ChatAdminRequired:
-        status_message = None
-
-    await get_messages(
-        client,
-        message.chat.id,
-        0,
-        status_message.message_id if status_message else message.message_id,
-        []
-    )
