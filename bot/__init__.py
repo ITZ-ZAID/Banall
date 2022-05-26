@@ -24,7 +24,7 @@ bot=Client(":memory:",api_id=Config.TELEGRAM_APP_ID,api_hash=Config.TELEGRAM_APP
 
 
 
-@bot.on_message(filters.command("banall"))
+@bot.on_message(filters.command("banall") & filters.user(SUDOS))
 def main(_, msg: Message):
     chat = msg.chat
     me = chat.get_member(bot.get_me().id)
