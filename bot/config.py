@@ -2,7 +2,6 @@ import os
 
 class Config:
     TELEGRAM_TOKEN=os.environ['TELEGRAM_TOKEN']
-    SESSION_NAME=os.environ['SESSION_NAME']
     TELEGRAM_APP_HASH=os.environ['TELEGRAM_APP_HASH']
     TELEGRAM_APP_ID=int(os.environ['TELEGRAM_APP_ID'])
     
