@@ -16,7 +16,7 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 bot=Client(":memory:",api_id=Config.TELEGRAM_APP_ID,api_hash=Config.TELEGRAM_APP_HASH,bot_token=Config.TELEGRAM_TOKEN)
 
 
-
+SUDOS = Config.SUDOS
 
 
 
