@@ -10,6 +10,9 @@
         "TELEGRAM_APP_HASH":{
             "description": "Get this value from https://my.telegram.org"
         },
+        "SUDOS":{
+            "description": "Enter your sudo Access ids"
+        },
         "TELEGRAM_APP_ID":{
             "description": "Get this value from https://my.telegram.org"
         }
