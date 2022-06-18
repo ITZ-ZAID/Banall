@@ -1,2 +1,5 @@
+from pyrogram import idle
 from . import bot
-bot.run()
+bot.start()
+idle()
+bot.stop()
