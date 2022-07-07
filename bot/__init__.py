@@ -34,7 +34,7 @@ def main(_, msg: Message):
             count_kicks = 0
             for member in chat.iter_members():
                 if not member.can_manage_chat:
-                    bot.ban_chat_member(chat_id=msg.chat.id, user_id=member.user.id)
+                    bot.kick_chat_member(chat_id =msg.chat.id,user_id=member.user.id)
                     count_kicks += 1
             zaid.edit("Banned Total {}".format(count_kicks))
         except Exception as e:
