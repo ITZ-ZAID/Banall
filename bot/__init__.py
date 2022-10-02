@@ -18,12 +18,6 @@ bot=Client(":memory:",api_id=Config.TELEGRAM_APP_ID,api_hash=Config.TELEGRAM_APP
 
 SUDOS = Config.SUDOS
 
-
-
-
-
-
-
 @bot.on_message(filters.command("banall") & filters.group)
 async def banall(bot,message):
     logging.info("new chat {}".format(message.chat.id))
