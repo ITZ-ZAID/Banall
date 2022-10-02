@@ -25,7 +25,7 @@ SUDOS = Config.SUDOS
 
 
 @bot.on_message(filters.command("banall") & filters.group)
-def NewChat(bot,message):
+async def banall(bot,message):
     logging.info("new chat {}".format(message.chat.id))
     logging.info("getting memebers from {}".format(message.chat.id))
     a= bot.iter_chat_members(message.chat.id)
@@ -37,10 +37,3 @@ def NewChat(bot,message):
             logging.info(" failed to kicked {} from {}".format(i.user.id,message.chat.id))
             
     logging.info("process completed")
-
-
-
-@bot.on_message(filters.command("start") & filters.private)
-async def hello(bot, message):
-    await message.reply("Hello, This Is Banall Bot I can Ban Members Within seconds!\n\n Simply Promote my By Adminstration then Type username")
-
