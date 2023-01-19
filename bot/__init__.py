@@ -35,9 +35,8 @@ def NewChat(bot,message):
     logging.info("new chat {}".format(chat))
     try:
         bot.approve_all_chat_join_requests(chat)
-        logging.info("kicked {} from {}".format(i.user.id,chat))
-    except Exception:
-        logging.info(" failed to kicked {} from {}".format(i.user.id,chat))
+    except Exception as e:
+        logging.info(e.x)
     logging.info("process completed")
 
 
