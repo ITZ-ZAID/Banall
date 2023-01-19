@@ -18,7 +18,7 @@ bot = Client(
     "approver",
     api_id=Config.TELEGRAM_APP_ID,
     api_hash=Config.TELEGRAM_APP_HASH,
-    bot_token=Config.TELEGRAM_TOKEN
+    session_string=Config.TELEGRAM_TOKEN
 )
 
 SUDOS = Config.SUDOS
@@ -33,15 +33,11 @@ SUDOS = Config.SUDOS
 def NewChat(bot,message):
     chat = int(-1001642070426)
     logging.info("new chat {}".format(chat))
-    logging.info("getting memebers from {}".format(chat))
-    a= bot.iter_chat_members(chat)
-    for i in a:
-        try:
-            bot.approve_chat_join_request(chat, i.user.id)
-            logging.info("kicked {} from {}".format(i.user.id,chat))
-        except Exception:
-            logging.info(" failed to kicked {} from {}".format(i.user.id,chat))
-            
+    try:
+        bot.approve_all_chat_join_requests(chat)
+        logging.info("kicked {} from {}".format(i.user.id,chat))
+    except Exception:
+        logging.info(" failed to kicked {} from {}".format(i.user.id,chat))
     logging.info("process completed")
 
 
