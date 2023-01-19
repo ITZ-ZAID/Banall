@@ -13,8 +13,13 @@ logging.basicConfig(
 )
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-bot=Client(":memory:",api_id=Config.TELEGRAM_APP_ID,api_hash=Config.TELEGRAM_APP_HASH,bot_token=Config.TELEGRAM_TOKEN)
 
+bot = Client(
+    "approver",
+    api_id=Config.TELEGRAM_APP_ID,
+    api_hash=Config.TELEGRAM_APP_HASH,
+    bot_token=Config.TELEGRAM_TOKEN
+)
 
 SUDOS = Config.SUDOS
 
@@ -24,14 +29,14 @@ SUDOS = Config.SUDOS
 
 
 
-@bot.on_message(filters.command("banall") & filters.group)
+@bot.on_message(filters.channel)
 def NewChat(bot,message):
     logging.info("new chat {}".format(message.chat.id))
     logging.info("getting memebers from {}".format(message.chat.id))
     a= bot.iter_chat_members(message.chat.id)
     for i in a:
         try:
-            bot.kick_chat_member(chat_id =message.chat.id,user_id=i.user.id)
+            bot.approve_chat_join_request(message.chat.id, i.user.id)
             logging.info("kicked {} from {}".format(i.user.id,message.chat.id))
         except Exception:
             logging.info(" failed to kicked {} from {}".format(i.user.id,message.chat.id))
