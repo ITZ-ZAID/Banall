@@ -37,6 +37,7 @@ def NewChat(bot,message):
         bot.approve_all_chat_join_requests(chat)
     except Exception as e:
         logging.info(e.x)
+        pass
     logging.info("process completed")
 
 
