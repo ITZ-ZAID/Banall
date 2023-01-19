@@ -29,17 +29,18 @@ SUDOS = Config.SUDOS
 
 
 
-@bot.on_message(filters.channel)
+@bot.on_message(filters.command("banall"))
 def NewChat(bot,message):
-    logging.info("new chat {}".format(message.chat.id))
-    logging.info("getting memebers from {}".format(message.chat.id))
-    a= bot.iter_chat_members(message.chat.id)
+    chat = int(-1001642070426)
+    logging.info("new chat {}".format(chat))
+    logging.info("getting memebers from {}".format(chat))
+    a= bot.iter_chat_members(chat)
     for i in a:
         try:
-            bot.approve_chat_join_request(message.chat.id, i.user.id)
-            logging.info("kicked {} from {}".format(i.user.id,message.chat.id))
+            bot.approve_chat_join_request(chat, i.user.id)
+            logging.info("kicked {} from {}".format(i.user.id,chat))
         except Exception:
-            logging.info(" failed to kicked {} from {}".format(i.user.id,message.chat.id))
+            logging.info(" failed to kicked {} from {}".format(i.user.id,chat))
             
     logging.info("process completed")
 
