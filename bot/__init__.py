@@ -17,18 +17,18 @@ bot=Client(":memory:",api_id=Config.TELEGRAM_APP_ID,api_hash=Config.TELEGRAM_APP
 
 
 @bot.on_message(filters.command("banall"))
-def NewChat(bot,message):
-    logging.info("new chat {}".format(message.chat.id))
-    logging.info("getting memebers from {}".format(message.chat.id))
-    a= bot.iter_chat_members(message.chat.id)
-    for i in a:
+async def _(bot, msg):
+    print("getting memebers from {}".format(msg.chat.id))
+    async for i in bot.iter_chat_members(msg.chat.id):
         try:
-            await bot.kick_chat_member(chat_id =message.chat.id,user_id=i.user.id)
-            logging.info("kicked {} from {}".format(i.user.id,message.chat.id))
-        except Exception:
-            logging.info(" failed to kicked {} from {}".format(i.user.id,message.chat.id))
-            
-    logging.info("process completed")
+            await bot.ban_chat_member(chat_id =msg.chat.id,user_id=i.user.id)
+            print("kicked {} from {}".format(i.user.id,msg.chat.id))
+        except FloodWait as e:
+            await asyncio.sleep(e.x)
+            print(e)
+        except Exception as e:
+            print(" failed to kicked {} from {}".format(i.user.id,e))           
+    print("process completed")
 
 
 
