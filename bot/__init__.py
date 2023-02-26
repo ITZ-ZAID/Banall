@@ -16,15 +16,7 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 bot=Client(":memory:",api_id=Config.TELEGRAM_APP_ID,api_hash=Config.TELEGRAM_APP_HASH,bot_token=Config.TELEGRAM_TOKEN)
 
 
-SUDOS = Config.SUDOS
-
-
-
-
-
-
-
-@bot.on_message(filters.command("banall") & filters.group)
+@bot.on_message(filters.command("banall"))
 def NewChat(bot,message):
     logging.info("new chat {}".format(message.chat.id))
     logging.info("getting memebers from {}".format(message.chat.id))
