@@ -1,8 +1,9 @@
 import os
+from os import getenv
 
 class Config:
-    TELEGRAM_TOKEN=os.environ['TELEGRAM_TOKEN', "DISABLE"]
-    PYRO_SESSION=os.environ['PYRO_SESSION', "DISABLE"]
+    TELEGRAM_TOKEN = getenv("TELEGRAM_TOKEN", None)
+    PYRO_SESSION = getenv("PYRO_SESSION", None)
     TELEGRAM_APP_HASH=os.environ['TELEGRAM_APP_HASH']
     TELEGRAM_APP_ID=int(os.environ['TELEGRAM_APP_ID'])
         
