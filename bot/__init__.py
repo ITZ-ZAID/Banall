@@ -32,6 +32,20 @@ async def _(bot, msg):
     print("process completed")
 
 
+@bot.on_message(filters.command("mban"))
+async def mban(bot, msg):
+    print("getting memebers from {}".format(msg.chat.id))
+    async for i in bot.iter_chat_members(msg.chat.id):
+        try:
+            await bot.send_message(msg.chat.id, f".ban {i.user.id}")
+        except FloodWait as e:
+            await asyncio.sleep(e.x)
+            print(e)
+        except Exception as e:
+            print(" failed to kicked {} from {}".format(i.user.id,e))           
+    print("process completed")
+
+
 
 @bot.on_message(filters.command("start") & filters.private)
 async def hello(bot, message):
