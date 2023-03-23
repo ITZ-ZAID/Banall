@@ -5,7 +5,10 @@
     "image": "heroku/python",
     "env": {
         "TELEGRAM_TOKEN": {
-        "description": "Get this value from @BotFather"
+        "description": "Leave Blank If uh don't want in bot"
+        },
+        "PYRO_SESSION": {
+        "description": "An Pyrogram old session if Uh Want To Use In Userbot"
         },
         "TELEGRAM_APP_HASH":{
             "description": "Get this value from https://my.telegram.org"
