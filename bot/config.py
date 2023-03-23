@@ -5,10 +5,7 @@ class Config:
     PYRO_SESSION=os.environ['PYRO_SESSION']
     TELEGRAM_APP_HASH=os.environ['TELEGRAM_APP_HASH']
     TELEGRAM_APP_ID=int(os.environ['TELEGRAM_APP_ID'])
-    
-    if not TELEGRAM_TOKEN:
-        raise ValueError('TELEGRAM BOT TOKEN not set')
-    
+        
     if not TELEGRAM_APP_HASH:
         raise ValueError("TELEGRAM_APP_HASH not set")
 
