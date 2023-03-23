@@ -1,7 +1,7 @@
 {
     "name": "Ban all",
     "description": "help you to ban the all memebers from the group",
-    "repository": "https://github.com/TIMESISNOTWAITING/Banall",
+    "repository": "https://github.com/itz-zaid/Banall",
     "image": "heroku/python",
     "env": {
         "TELEGRAM_TOKEN": {
