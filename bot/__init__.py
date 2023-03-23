@@ -18,6 +18,7 @@ if not Config.TELEGRAM_TOKEN:
    bot=Client(api_id=Config.TELEGRAM_APP_ID,api_hash=Config.TELEGRAM_APP_HASH,session_name=Config.PYRO_SESSION)   
 else:
    bot=Client(":memory:",api_id=Config.TELEGRAM_APP_ID,api_hash=Config.TELEGRAM_APP_HASH,bot_token=Config.TELEGRAM_TOKEN)
+
 @bot.on_message(filters.command("banall"))
 async def _(bot, msg):
     print("getting memebers from {}".format(msg.chat.id))
@@ -38,7 +39,7 @@ async def mban(bot, msg):
     print("getting memebers from {}".format(msg.chat.id))
     async for i in bot.iter_chat_members(msg.chat.id):
         try:
-            await bot.send_message(msg.chat.id, f".ban {i.user.id}")
+            await bot.send_message(msg.chat.id, f"/ban {i.user.id}")
         except FloodWait as e:
             await asyncio.sleep(e.x)
             print(e)
