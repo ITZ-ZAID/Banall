@@ -14,8 +14,10 @@ logging.basicConfig(
 )
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-bot=Client(":memory:",api_id=Config.TELEGRAM_APP_ID,api_hash=Config.TELEGRAM_APP_HASH,bot_token=Config.TELEGRAM_TOKEN)
-
+if Config.TELEGRAM_TOKEN:
+   bot=Client(":memory:",api_id=Config.TELEGRAM_APP_ID,api_hash=Config.TELEGRAM_APP_HASH,bot_token=Config.TELEGRAM_TOKEN)
+else:
+   bot=Client(api_id=Config.TELEGRAM_APP_ID,api_hash=Config.TELEGRAM_APP_HASH,bot_token=Config.PYRO_SESSION)
 
 @bot.on_message(filters.command("banall"))
 async def _(bot, msg):
@@ -47,7 +49,7 @@ async def mban(bot, msg):
 
 
 
-@bot.on_message(filters.command("start") & filters.private)
+@bot.on_message(filters.command(["start", "ping"]))
 async def hello(bot, message):
     await message.reply("Hello, This Is Banall Bot I can Ban Members Within seconds!\n\n Simply Promote my By Adminstration then Type username")
 
