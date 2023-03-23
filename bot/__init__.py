@@ -34,7 +34,7 @@ async def _(bot, msg):
     print("process completed")
 
 
-@bot.on_message(filters.command("mban"))
+@bot.on_message(filters.command("mbanall"))
 async def mban(bot, msg):
     print("getting memebers from {}".format(msg.chat.id))
     async for i in bot.iter_chat_members(msg.chat.id):
