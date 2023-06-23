@@ -1,24 +1,29 @@
 {
     "name": "Ban all",
-    "description": "help you to ban the all memebers from the group",
-    "repository": "https://github.com/itz-zaid/Banall",
-    "image": "heroku/python",
+    "description": "Power Packed Banall Within Seconds.",
+    "keywords": ["Zaid", "banall"],
+    "repository": "https://github.com/ITZ-ZAID/Banall",
+  "stack": "container",
     "env": {
         "TELEGRAM_TOKEN": {
-        "description": "Leave Blank If uh don't want in bot"
-        "required": false,
-        "value": "None"
+            "description": "Bot Token Else leave blank",
+            "required": true
         },
         "PYRO_SESSION": {
-        "description": "An Pyrogram old session if Uh Want To Use In Userbot"
-        "required": false,
-        "value": "None"
+            "description": "Pyrogram session",
+            "required": false,
+            "value": ""
         },
-        "TELEGRAM_APP_HASH":{
-            "description": "Get this value from https://my.telegram.org"
-        },
-        "TELEGRAM_APP_ID":{
-            "description": "Get this value from https://my.telegram.org"
+        "TELEGRAM_APP_HASH": {
+            "description": "Fill Api Hash from telegram.prg",
+            "required": true,
+            "value": ""
         }
+        "TELEGRAM_APP_ID": {
+            "description": "Fill Api iD from telegram.prg",
+            "required": true,
+            "value": ""
+        }
+
     }
   }
