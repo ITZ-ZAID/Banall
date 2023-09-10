@@ -1,29 +1,42 @@
 {
-    "name": "Ban all",
-    "description": "Power Packed Banall Within Seconds.",
-    "keywords": ["Zaid", "banall"],
-    "repository": "https://github.com/ITZ-ZAID/Banall",
+  "name": "KILLERBOT",
+  "description": "DELETED ACCOUNT REMOVER.",
+  "keywords": ["python", "telegram"],
+  "logo": "https://graph.org/file/58d1e317bdd86d7bc215a.jpg",
+  "repository": "https://github.com/rocks143014/KILLERBOT/",
   "stack": "container",
-    "env": {
-        "TELEGRAM_TOKEN": {
-            "description": "Bot Token Else leave blank",
+  "addons": [
+      {
+         "options": {
+            "version": "12"
+         },
+         "plan": "heroku-postgresql"
+      }
+   ],
+   "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-python"
+    },
+    {
+      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+    }
+  ],
+  "env": {
+        "BOT_TOKEN": {
+            "description": "A bot token from @BotFather",
             "required": true
         },
-        "PYRO_SESSION": {
-            "description": "Pyrogram session",
-            "required": false,
-            "value": ""
+        "API_ID": {
+            "description": "App ID from my.telegram.org/apps",
+            "required": true
         },
-        "TELEGRAM_APP_HASH": {
-            "description": "Fill Api Hash from telegram.prg",
-            "required": true,
-            "value": ""
+        "API_HASH": {
+            "description": "App Hash from my.telegram.org/apps",
+            "required": true
+        },
+        "OWNER_ID": {
+            "description": "Owner's numeric ID",
+            "required": true
         }
-        "TELEGRAM_APP_ID": {
-            "description": "Fill Api iD from telegram.prg",
-            "required": true,
-            "value": ""
-        }
-
     }
-  }
+}
