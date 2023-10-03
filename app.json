@@ -3,7 +3,7 @@
     "description": "Power Packed Banall Within Seconds.",
     "keywords": ["Zaid", "banall"],
     "repository": "https://github.com/ITZ-ZAID/Banall",
-  "stack": "container",
+    "stack": "container",
     "env": {
         "TELEGRAM_TOKEN": {
             "description": "Bot Token Else leave blank",
@@ -18,12 +18,11 @@
             "description": "Fill Api Hash from telegram.prg",
             "required": true,
             "value": ""
-        }
+        },
         "TELEGRAM_APP_ID": {
-            "description": "Fill Api iD from telegram.prg",
+            "description": "Fill Api ID from telegram.prg",
             "required": true,
             "value": ""
         }
-
     }
-  }
+}
